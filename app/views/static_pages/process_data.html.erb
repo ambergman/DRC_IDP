@@ -1,6 +1,23 @@
 <h1>Upload Dataset:</h1>
 
+	<%= flash[:notice] %>
+<div>
+<%= @csv %>
+</div>
 
 <div>
-	
+<h3>Import a CSV File</h3>
+  <%= form_tag read_csv_path, multipart: true do %>
+		
+		<div>
+			<label for="filename">Enter Filename</label>
+			<input id="filename" name="filename" type="text">			
+		</div>
+    
+		<%= file_field_tag :file %>
+		
+		<p></p>
+    
+		<%= submit_tag "Import Selected CSV" %>
+  <% end %>
 </div>
