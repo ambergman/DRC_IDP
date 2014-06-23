@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618221547) do
+ActiveRecord::Schema.define(version: 20140623031419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "reconciled_matches", force: true do |t|
+    t.integer  "master_dataset_id"
+    t.string   "satellite_dataset"
+    t.integer  "satellite_dataset_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reconciled_matches", ["master_dataset_id"], name: "index_reconciled_matches_on_master_dataset_id", using: :btree
+  add_index "reconciled_matches", ["satellite_dataset"], name: "index_reconciled_matches_on_satellite_dataset", using: :btree
+  add_index "reconciled_matches", ["satellite_dataset_id"], name: "index_reconciled_matches_on_satellite_dataset_id", using: :btree
 
   create_table "test_idps", force: true do |t|
     t.string   "first_name"
@@ -28,5 +40,16 @@ ActiveRecord::Schema.define(version: 20140618221547) do
   add_index "test_idps", ["age"], name: "index_test_idps_on_age", using: :btree
   add_index "test_idps", ["first_name"], name: "index_test_idps_on_first_name", using: :btree
   add_index "test_idps", ["last_name"], name: "index_test_idps_on_last_name", using: :btree
+
+  create_table "unreconciled_matches", force: true do |t|
+    t.string   "master_dataset_ids"
+    t.string   "satellite_dataset"
+    t.integer  "satellite_dataset_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "unreconciled_matches", ["satellite_dataset"], name: "index_unreconciled_matches_on_satellite_dataset", using: :btree
+  add_index "unreconciled_matches", ["satellite_dataset_id"], name: "index_unreconciled_matches_on_satellite_dataset_id", using: :btree
 
 end
