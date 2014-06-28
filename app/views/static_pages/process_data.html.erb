@@ -1,6 +1,60 @@
 <h1>Upload Dataset:</h1>
 
+	<%= flash[:notice] %>
 
 <div>
+<h3>Import a CSV File</h3>
+  <%= form_tag read_csv_path, multipart: true do %>
+		
+		<div>
+			<label for="filename">Enter Filename</label>
+			<input id="filename" name="filename" type="text">			
+		</div>
+    
+		<%= file_field_tag :file %>
+		
+		<p></p>
+    
+		<%= submit_tag "Import Selected CSV" %>
+  <% end %>
+</div>
+
+
+<div class="records">
+	<h3>Master Dataset IDPs</h3>
+	<table>
+	<% @idps.each do |idp| %>
+		 <tr>
+		 	<td><%= idp.first_name %></td>
+		 	<td><%= idp.last_name %></td>
+		 	<td><%= idp.age %></td>
+		 	<td><%= idp.sex %></td>
+		 </tr>   
+	<% end %>
+	</table>
+</div>
+
+<div class="records">
+	<h3>Reconciled Matches</h3>
+	<table>
+	<% @reconciled_matches.each do |rm| %>
+		 <tr>
+		 	<td><%= rm.master_dataset_id %></td>
+		 	<td><%= rm.satellite_dataset %></td>
+		 	<td><%= rm.satellite_dataset_id %></td>
+		 </tr>   
+	<% end %>
+	</table>
+	
+</div>
+<div class="records">
+	<h3>Unreconciled Matches</h3>
+	<% @unreconciled_matches.each do |urm| %>
+		 <tr>
+		 	<td><%= urm.master_dataset_ids %></td>
+		 	<td><%= urm.satellite_dataset %></td>
+		 	<td><%= urm.satellite_dataset_id %></td>
+		 </tr>   
+	<% end %>
 	
 </div>

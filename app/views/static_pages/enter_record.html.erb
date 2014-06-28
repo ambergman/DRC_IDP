@@ -1,0 +1,25 @@
+
+<h1>Enter Record</h1>
+
+<div>
+  First Name: <%= @first_name %>
+</div>
+
+<form action="<%= create_record_url %>" method="post">
+  <%= authenticity_token %>
+  
+  First Name
+  <input type="text" name="idp[first_name]"></input>
+
+  <p><input type="submit" value="Submit"></p>
+</form>
+
+<!-- <form action="<%= create_record_url %>" method="post"   accept-charset="utf-8">
+
+
+  First Name
+  <input type="text"></input>
+
+  <p><input type="submit" value="Submit"></p>
+</form> -->
+
