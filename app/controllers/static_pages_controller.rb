@@ -16,6 +16,7 @@ class StaticPagesController < ApplicationController
   end
   
   def enter_record
+    @test_idp = TestIdp.new
     render :enter_record
   end
   
