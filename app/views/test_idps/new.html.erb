@@ -1,23 +1,28 @@
-<%= render 'layouts/navbar' %>
-<h1>Enter Record</h1>
+<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 
-<%= simple_form_for @test_idp do |f| %>
+<%= render 'layouts/navbar' %>
+<h1>Enter New Test_IDP Record</h1>
+
+<section>
+<%= simple_form_for @test_idp, url: test_idps_url  do |f| %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>
   <%= f.input :age %>
   <%= f.input :sex %>
 
+  <%= f.button :submit %>
+<% end %>  
+</section>
+
+<% if flash[:new_record_status] %>
+  <section>
+    <h2><%= flash[:new_record_status] %></h2>
+    <% if @last_test_idp %>
+    <h3><%= @last_test_idp.first_name + " " + @last_test_idp.last_name %></h3>
+    <ul>
+      <li>Age: <%= @last_test_idp.age %></li>
+      <li>Sex: <%= @last_test_idp.sex %></li>
+    </ul>
+    <% end %>
+  </section>
 <% end %>
-
-<div>
-  First Name: <%= @first_name %>
-</div>
-
-<form action="<%= create_record_url %>" method="post">
-  <%= authenticity_token %>
-  
-  First Name
-  <input type="text" name="idp[first_name]"></input>
-
-  <p><input type="submit" value="Submit"></p>
-</form>

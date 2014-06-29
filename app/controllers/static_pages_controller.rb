@@ -27,8 +27,8 @@ class StaticPagesController < ApplicationController
   #   render :enter_record
   # end
   
-  def idp_params
-    params.require(:idp).permit(:first_name, :last_name)
-  end
-  
+  # def idp_params
+  #   params.require(:idp).permit(:first_name, :last_name)
+  # end
+
 end
